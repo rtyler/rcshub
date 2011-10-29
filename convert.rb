@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'rubygems'
+require 'temp_dir'
 require 'grit'
 
 def walk_tree(tree)
