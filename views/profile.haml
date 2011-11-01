@@ -1,0 +1,8 @@
+%html
+  %head
+    %title= @username
+  %body
+    Hello, #{@username}
+    %p
+    - @repositories.each do |r|
+      Repo: #{r}

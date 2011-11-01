@@ -2,6 +2,7 @@ source :rubygems
 
 gem "json"
 gem "grit"
+gem "haml"
 gem "octopi"
 gem "rake"
 gem "sinatra"
