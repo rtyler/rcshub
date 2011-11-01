@@ -1,5 +1,6 @@
 source :rubygems
 
+gem "json"
 gem "grit"
 gem "rake"
 gem "sinatra"
