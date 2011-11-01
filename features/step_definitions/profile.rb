@@ -2,18 +2,27 @@ require 'rubygems'
 require 'mocha'
 require 'octopi'
 
+Before do
+  @username = "fakeuser"
+  @mocked_user = Mocha::Mock.new
+  @mocked_user.stubs(:name).returns(@username)
+  @mocked_user.stubs(:repositories).returns([])
+
+  Octopi::User.stubs(:find).returns(@mocked_user)
+end
+
 Given /^a user named "([^"]*)"$/ do |name|
-  @username = name
+  @mocked_user.stubs(:name).returns(name)
 end
 
 Given /^a user with (\d+) repositories$/ do |count|
-  @username = "fakeuser"
-  @user = Mocha::Mock.new
   repos = []
-  count.to_i.times do
-    repos << Octopi::Repository.new
+  count.to_i.times do |i|
+    repo = Octopi::Repository.new
+    repo.stubs(:name).returns("repo_#{i}")
+    repos << repo
   end
-  @user.stubs(:repositories).returns(repos)
+  @mocked_user.stubs(:repositories).returns(repos)
 end
 
 When /^I visit the user's profile$/ do

@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'rubygems'
+require 'octopi'
 require 'sinatra'
 
 get '/' do
@@ -8,7 +9,6 @@ get '/' do
 end
 
 get "/:username" do |username|
-  @repositories = []
-  @username = username
+  @user = Octopi::User.find(username)
   haml :profile
 end
