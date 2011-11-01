@@ -2,7 +2,9 @@
   %head
     %title= @username
   %body
-    Hello, #{@username}
     %p
+      Hello, #{@username}
+
     - @repositories.each do |r|
-      Repo: #{r}
+      %div{:class => "repo_row"}
+        Repo: #{r}
