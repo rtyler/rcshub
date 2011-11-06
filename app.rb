@@ -25,3 +25,14 @@ get "/:username" do |username|
   haml :profile
 end
 
+get "/:username/:repo" do |username, repo|
+  @username = username
+  @reponame = repo
+  @tree = @api.tree_for(username, repo)["tree"]
+  @tree.sort! do |left, right|
+    left["type"] <=> right["type"]
+  end
+  @uri_base = "https://github.com/#{username}/#{repo}/blob/HEAD"
+  haml :repo
+end
+

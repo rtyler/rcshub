@@ -1,0 +1,85 @@
+%html
+  %head
+    %title= "Index of /#{@username}/#{@reponame}"
+  %body
+    %h1
+      Index of /#{@username}/#{@reponame}
+
+    %table
+      %tr
+        %th
+          %img{:src => "/icons/blank.png"}
+        %th
+          %a{:href => "#"}
+            Name
+        %th
+          %a{:href => "#"}
+            Last Modified
+        %th
+          %a{:href => "#"}
+            Size
+        %th
+          %a{:href => "#"}
+            Description
+      %tr
+        %th{:colspan => 5}
+          %hr
+      %tr
+        %td
+          %img{:src => "/icons/back.png"}
+        %td
+          %a{:href => "/#{@username}"}
+            Parent Directory
+        %td
+        %td{:align => "right"}
+          \-
+      %tr
+        %td
+          %img{:src => "/icons/folder.png"}
+        %td
+          %a{:href => "/#{@username}/#{@reponame}/branches"}
+            branches
+        %td
+        %td{:align => "right"}
+          \-
+      %tr
+        %td
+          %img{:src => "/icons/folder.png"}
+        %td
+          %a{:href => "/#{@username}/#{@reponame}/tags"}
+            tags
+        %td
+        %td{:align => "right"}
+          \-
+      %tr
+        %td
+          %img{:src => "/icons/tar.png"}
+        %td
+          %a{:href => "/#{@username}/#{@reponame}/clone"}
+            clone #{@reponame.downcase}.rcsrepo
+        %td
+        %td{:align => "right"}
+          \-
+      %tr
+        %th{:colspan => 5}
+          %hr
+
+      - @tree.reverse_each do |f|
+        %tr{:class => "tree_file_row"}
+          %td
+            - if f["type"] == "tree"
+              %img{:src => "/icons/folder.png"}
+            - else
+              %img{:src => "/icons/unknown.png"}
+          %td
+            %a{:href => "#{@uri_base}/#{f["path"]}"}
+              #{f["path"]}
+          %td
+            &nbsp;
+          %td{:align => "right"}
+            - if f["type"] == "tree"
+              \-
+            - else
+              #{f["size"]}
+          %td
+            &nbsp;
