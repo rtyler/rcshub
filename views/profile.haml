@@ -1,10 +1,48 @@
 %html
   %head
-    %title= @username
+    %title= "Index of /#{@username}"
   %body
-    %p
-      Hello, #{@username}
+    %h1
+      Index of /#{@username}
 
-    - @repos.each do |r|
-      %div{:class => "repo_row"}
-        Repo: #{r["name"]}
+    %table
+      %tr
+        %th
+          %img{:src => "/icons/blank.png"}
+        %th
+          %a{:href => "#"}
+            Name
+        %th
+          %a{:href => "#"}
+            Last Modified
+        %th
+          %a{:href => "#"}
+            Size
+        %th
+          %a{:href => "#"}
+            Description
+      %tr
+        %th{:colspan => 5}
+          %hr
+      %tr
+        %td
+          %img{:src => "/icons/back.png"}
+        %td
+          %a{:href => "../"}
+            Parent Directory
+        %td
+        %td{:align => "right"}
+          \-
+      - @repos.each do |r|
+        %tr{:class => "repo_row"}
+          %td
+            %img{:src => "/icons/folder.png"}
+          %td
+            %a{:href => "/#{@username}/#{r["name"]}"}
+              #{r["name"]}
+          %td
+            #{r["pushed_at"]}
+          %td{:align => "right"}
+            \-
+          %td
+            &nbsp;#{r["description"]}

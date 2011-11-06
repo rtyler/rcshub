@@ -8,6 +8,7 @@ require 'sinatra'
 
 require File.dirname(__FILE__) + "/lib/rcshub/github"
 
+
 before do
   @api = RCSHub::API::GitHub.new
   @api.cache = Redis.new({:host => "localhost", :port => 6380})

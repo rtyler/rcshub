@@ -3,7 +3,7 @@ Feature: Generate a user's profile
   Scenario: Viewing a profile
     Given a user named "mike"
     When I visit the user's profile
-    Then the title should contain "mike"
+    Then the title should contain "Index of /mike"
 
   Scenario: View a profile with no repos
     Given a user with 0 repositories
