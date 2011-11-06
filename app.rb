@@ -9,13 +9,14 @@ require 'sinatra'
 require File.dirname(__FILE__) + "/lib/rcshub/github"
 
 
+
 before do
   @api = RCSHub::API::GitHub.new
   @api.cache = Redis.new({:host => "localhost", :port => 6380})
 end
 
 get '/' do
-  "Hello, world!"
+  erb :home
 end
 
 get "/:username" do |username|
@@ -23,3 +24,4 @@ get "/:username" do |username|
   @username = username
   haml :profile
 end
+
