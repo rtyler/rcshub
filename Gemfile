@@ -1,5 +1,6 @@
 source :rubygems
 
+gem "foreman"
 gem "json"
 gem "grit"
 gem "haml"
