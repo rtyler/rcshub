@@ -1,10 +1,10 @@
 %html
   %head
-    %title= @user.name
+    %title= @username
   %body
     %p
-      Hello, #{@user.name}
+      Hello, #{@username}
 
-    - @user.repositories.each do |r|
+    - @repos.each do |r|
       %div{:class => "repo_row"}
-        Repo: #{r.name}
+        Repo: #{r["name"]}
