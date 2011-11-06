@@ -2,8 +2,6 @@
 
 require 'rubygems'
 require 'httparty'
-require 'memcache'
-require 'pp'
 
 module RCSHub
   module API
@@ -14,6 +12,8 @@ module RCSHub
 
       attr_accessor :cache
       REPOS_CACHE_KEY = "repos-for:"
+      CACHE_EXPIRE = 60 * 5
+
 
       def initialize
         @cache = nil
@@ -25,12 +25,12 @@ module RCSHub
 
         unless @cache.nil?
           if result = @cache.get(key)
-            return result
+            return JSON.load(result)
           end
         end
 
         result = fetch_repos_for(username)
-        @cache.set(key, result) unless @cache.nil?
+        @cache.setex(key, CACHE_EXPIRE, JSON.dump(result)) unless @cache.nil?
         return result
       end
 

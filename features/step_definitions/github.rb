@@ -1,3 +1,5 @@
+require 'rubygems'
+require 'json'
 require File.dirname(__FILE__) + "/../../lib/rcshub/github.rb"
 
 Before do
@@ -19,7 +21,7 @@ end
 Given /^I expect to cache the repos$/ do
   # This is crap, I'm setting up my expectation in the wrong step. Not sure how
   # to accomplish this properly just yet
-  @api.cache.expects(:set).with("#{@api.class::REPOS_CACHE_KEY}#{@username}", @repos)
+  @api.cache.expects(:setex).with("#{@api.class::REPOS_CACHE_KEY}#{@username}", @api.class::CACHE_EXPIRE, JSON.dump(@repos))
 end
 
 When /^I hit the repos API$/ do
@@ -35,7 +37,7 @@ Then /^I should have cached that list of repos$/ do
 end
 
 Given /^those repos are cached$/ do
-  @api.cache.expects(:get).returns(@repos)
+  @api.cache.expects(:get).returns(JSON.dump(@repos))
   @api.expects(:fetch_repos_for).never
 end
 
