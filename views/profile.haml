@@ -45,4 +45,6 @@
           %td{:align => "right"}
             \-
           %td
-            &nbsp;#{r["description"]}
+            &nbsp;#{r["description"][0 .. 80]}
+            - if r["description"].length > 80
+              \...

@@ -52,11 +52,11 @@ module RCSHub
       private
 
       def fetch_repos_for(username)
-        return self.class.get("#{BASE_URL}/users/#{username}/repos")
+        return self.class.get("#{BASE_URL}/users/#{username}/repos?per_page=100")
       end
 
       def fetch_tree_for(username, repo)
-        return self.class.get("#{BASE_URL}/repos/#{username}/#{repo}/git/trees/HEAD")
+        return self.class.get("#{BASE_URL}/repos/#{username}/#{repo}/git/trees/HEAD?per_page=100")
       end
 
     end

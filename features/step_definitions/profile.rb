@@ -12,7 +12,7 @@ end
 Given /^a user with (\d+) repositories$/ do |count|
   repos = []
   count.to_i.times do |i|
-    repo = {"name" => "repo_#{i}"}
+    repo = {"name" => "repo_#{i}", "description" => "Simple Repo #{i}"}
     repos << repo
   end
   RCSHub::API::GitHub.any_instance.expects(:repos_for_user).
