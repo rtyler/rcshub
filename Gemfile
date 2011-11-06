@@ -8,6 +8,7 @@ gem "httparty"
 gem "rake"
 gem "redis"
 gem "sinatra"
+gem "SystemTimer"
 gem "tempdir"
 
 group :development do
