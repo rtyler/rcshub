@@ -1,3 +1,3 @@
-cache: memcached -p 11222 -v
-web: bundle exec rackup -w
+cache: redis-server ./redis.conf
+web: bundle exec shotgun -w
 

@@ -22,7 +22,6 @@ GEM
       multi_json
       multi_xml
     json (1.6.1)
-    memcache (1.2.13)
     metaclass (0.0.1)
     mime-types (1.17.2)
     mocha (0.10.0)
@@ -36,7 +35,10 @@ GEM
     rack-test (0.6.1)
       rack (>= 1.0)
     rake (0.9.2.2)
+    redis (2.2.2)
     rspec (1.3.2)
+    shotgun (0.9)
+      rack (>= 1.0)
     sinatra (1.3.1)
       rack (~> 1.3, >= 1.3.4)
       rack-protection (~> 1.1, >= 1.1.2)
@@ -60,10 +62,11 @@ DEPENDENCIES
   haml
   httparty
   json
-  memcache
   mocha
   rake
+  redis
   rspec (~> 1.x)
+  shotgun
   sinatra
   tempdir
   webrat
